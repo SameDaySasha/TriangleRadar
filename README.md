@@ -82,7 +82,7 @@ pip install psycopg2 &&
 flask db upgrade &&
 flask seed all
 ```
-test
+test2
 This script will install dependencies for the frontend, and run the build
 command in the __package.json__ file for the frontend, which builds the React
 application. Then, it will install the dependencies needed for the Python
