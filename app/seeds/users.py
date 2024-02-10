@@ -1,32 +1,43 @@
-from app.models import db, User, environment, SCHEMA
+from app.models import db, Player, environment, SCHEMA
 from sqlalchemy.sql import text
 
-
-# Adds a demo user, you can add other users here if you want
-def seed_users():
-    demo = User(
-        username='Demo', email='demo@aa.io', password='password')
-    marnie = User(
-        username='marnie', email='marnie@aa.io', password='password')
-    bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password')
+# Adds demo players, you can add other players here if you want
+def seed_players():
+    demo = Player(
+        username='Demo', 
+        email='demo@aa.io', 
+        password='password',
+        character_name='DemoChar',
+        character_id='1234567890',  # Assuming character IDs are strings
+        skill_points=0,
+        # Assuming you have a default system or NULL for last_known_location_id
+    )
+    marnie = Player(
+        username='marnie', 
+        email='marnie@aa.io', 
+        password='password',
+        character_name='MarnieChar',
+        character_id='0987654321',
+        skill_points=0,
+    )
+    bobbie = Player(
+        username='bobbie', 
+        email='bobbie@aa.io', 
+        password='password',
+        character_name='BobbieChar',
+        character_id='1122334455',
+        skill_points=0,
+    )
 
     db.session.add(demo)
     db.session.add(marnie)
     db.session.add(bobbie)
     db.session.commit()
 
-
-# Uses a raw SQL query to TRUNCATE or DELETE the users table. SQLAlchemy doesn't
-# have a built in function to do this. With postgres in production TRUNCATE
-# removes all the data from the table, and RESET IDENTITY resets the auto
-# incrementing primary key, CASCADE deletes any dependent entities.  With
-# sqlite3 in development you need to instead use DELETE to remove all data and
-# it will reset the primary keys for you as well.
-def undo_users():
+# Uses a raw SQL query to TRUNCATE the players table in production or DELETE in development
+def undo_players():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.players RESTART IDENTITY CASCADE;")
     else:
-        db.session.execute(text("DELETE FROM users"))
-        
+        db.session.execute(text("DELETE FROM players"))
     db.session.commit()
