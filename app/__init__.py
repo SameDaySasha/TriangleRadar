@@ -4,7 +4,7 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
-from .models import db, Player  # Updated import
+from .models import db, Player, System  # Updated import
 from .api.player_routes import player_routes  # Consider renaming this if it exclusively deals with Player entities
 from .api.auth_routes import auth_routes
 from .seeds import seed_commands
@@ -72,5 +72,3 @@ def react_root(path):
 def not_found(e):
     return app.send_static_file('index.html')
 
-
-# i need my schema to be updated 
