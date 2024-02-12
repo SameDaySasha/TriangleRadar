@@ -1,30 +1,22 @@
 from flask.cli import AppGroup
-# Update the import paths according to your new file names and function names
 from .players import seed_players, undo_players
+# Import seed and undo functions for the System model
+from .systems import seed_systems, undo_systems
 
 from app.models.db import db, environment, SCHEMA
 
-# Creates a seed group to hold our commands
-# So we can type `flask seed --help`
 seed_commands = AppGroup('seed')
 
-# Creates the `flask seed all` command
 @seed_commands.command('all')
 def seed():
-    # Assuming your environment handling logic remains the same
     if environment == 'production':
-        # Before seeding in production, you might want to ensure that
-        # all existing data is cleared to avoid conflicts or duplicates
-        # This assumes you've updated your undo function accordingly
+        # Assuming clearing data before seeding in production
         undo_players()
-        # Add a call to undo functions for other models here if necessary
-    # Now calling the updated seed function for players
+        undo_systems()  # Add this line
     seed_players()
-    # Add calls to seed functions for other models here
+    seed_systems()  # Add this line
 
-# Creates the `flask seed undo` command
 @seed_commands.command('undo')
 def undo():
-    # Call the updated undo function for players
     undo_players()
-    # Add calls to undo functions for other models here
+    undo_systems()  # Add this line
