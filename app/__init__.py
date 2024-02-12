@@ -24,8 +24,9 @@ def load_user(id):
 app.cli.add_command(seed_commands)
 
 app.config.from_object(Config)
-app.register_blueprint(player_routes, url_prefix='/api/players')  # Corrected to use player_routes
+app.register_blueprint(player_routes, url_prefix='/api/players') 
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
+app.register_blueprint(system_routes, url_prefix='/api/systems')  
 db.init_app(app)
 Migrate(app, db)
 
