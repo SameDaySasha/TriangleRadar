@@ -8,8 +8,16 @@ def seed_systems():
         threat_level=ThreatLevel.low,
         notes="Initial seeding."
     )
+    
+    system2 = System(
+        name="System Beta",
+        status="Active",
+        threat_level=ThreatLevel.medium,
+        notes="Initial seeding."
+    )
 
     db.session.add(system1)
+    db.session.add(system2)
     db.session.commit()
 
 def undo_systems():
