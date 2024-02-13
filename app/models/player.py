@@ -4,7 +4,7 @@ from flask_login import UserMixin
 
 class Player(db.Model, UserMixin):
     __tablename__ = 'players'
-
+    __table_args__ = {'extend_existing': True}
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
