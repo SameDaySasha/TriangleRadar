@@ -1,4 +1,4 @@
-from app.models import db, Player
+from app.models import db, Player, System, ThreatLevel
 from app.models.db import environment, SCHEMA
 
 def seed_systems():
