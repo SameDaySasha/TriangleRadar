@@ -14,10 +14,19 @@ def seed_systems():
         status="Active",
         threat_level=ThreatLevel.medium,
         notes="Initial seeding."
+    )  
+    system3 = System(
+        name="System Gamma",
+        status="Active",
+
+        threat_level=ThreatLevel.high,
+        notes="Initial seeding."
     )
+
 
     db.session.add(system1)
     db.session.add(system2)
+    db.session.add(system3)
     db.session.commit()
 
 def undo_systems():
