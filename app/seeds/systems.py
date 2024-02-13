@@ -21,5 +21,11 @@ def seed_systems():
     db.session.commit()
 
 def undo_systems():
-    db.session.execute('TRUNCATE systems RESTART IDENTITY CASCADE;')
+    # Checks if the environment variable is set to "production"
+    if environment == "production":
+        # Executes a TRUNCATE statement with the schema for production
+        db.session.execute(f"TRUNCATE table {SCHEMA}.systems RESTART IDENTITY CASCADE;")
+    else:
+        # Executes a DELETE statement without a schema for development
+        db.session.execute(text("DELETE FROM systems"))
     db.session.commit()
