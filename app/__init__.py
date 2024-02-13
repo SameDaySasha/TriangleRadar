@@ -9,6 +9,7 @@ from .api.player_routes import player_routes  # Consider renaming this if it exc
 from .api.auth_routes import auth_routes
 from .seeds import seed_commands
 from .config import Config
+from .api.system_routes import system_routes
 
 app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 

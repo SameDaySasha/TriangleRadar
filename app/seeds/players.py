@@ -1,4 +1,7 @@
-from app.models import db, Player, environment, SCHEMA
+# seeds/players.py
+from app.models import db, Player
+from app.models.db import environment, SCHEMA
+
 from sqlalchemy.sql import text
 
 # Adds demo players, you can add other players here if you want
