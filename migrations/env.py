@@ -1,5 +1,7 @@
 from __future__ import with_statement
+import os
 from dotenv import load_dotenv
+load_dotenv()   # Load environment variables from .env file
 import logging
 from logging.config import fileConfig
 from flask import current_app
@@ -73,7 +75,7 @@ from sqlalchemy import create_engine, MetaData
 
 from sqlalchemy import create_engine, event
 from sqlalchemy.engine import Engine
-import os
+
 
 # Assuming you've already loaded environment variables with dotenv
 
