@@ -1,16 +1,12 @@
 from __future__ import with_statement
-import os
-from dotenv import load_dotenv
-load_dotenv()   # Load environment variables from .env file
+
 import logging
 from logging.config import fileConfig
+
 from flask import current_app
+
 from alembic import context
 
-
-
-
-SCHEMA = os.getenv("SCHEMA")
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
@@ -71,33 +67,39 @@ def run_migrations_offline():
         context.run_migrations()
 
 
-from sqlalchemy import create_engine, MetaData
-
-from sqlalchemy import create_engine, event
-from sqlalchemy.engine import Engine
-
-
-# Assuming you've already loaded environment variables with dotenv
-
-
-def create_schema_if_not_exists(engine: Engine, schema: str):
-    if not engine.dialect.has_schema(engine, schema):
-        engine.execute(f"CREATE SCHEMA {schema}")
-
 def run_migrations_online():
-    connectable = get_engine()
+    """Run migrations in 'online' mode.
 
-    if SCHEMA:
-        create_schema_if_not_exists(connectable, SCHEMA)
+    In this scenario we need to create an Engine
+    and associate a connection with the context.
+
+    """
+
+    # this callback is used to prevent an auto-migration from being generated
+    # when there are no changes to the schema
+    # reference: http://alembic.zzzcomputing.com/en/latest/cookbook.html
+    def process_revision_directives(context, revision, directives):
+        if getattr(config.cmd_opts, 'autogenerate', False):
+            script = directives[0]
+            if script.upgrade_ops.is_empty():
+                directives[:] = []
+                logger.info('No changes in schema detected.')
+
+    connectable = get_engine()
 
     with connectable.connect() as connection:
         context.configure(
             connection=connection,
-            target_metadata=target_metadata,
-            # Ensure the schema is set here if necessary
-            # e.g., version_table_schema=SCHEMA if using a specific schema for Alembic's version table
+            target_metadata=get_metadata(),
+            process_revision_directives=process_revision_directives,
+            **current_app.extensions['migrate'].configure_args
         )
 
         with context.begin_transaction():
             context.run_migrations()
 
+
+if context.is_offline_mode():
+    run_migrations_offline()
+else:
+    run_migrations_online()
