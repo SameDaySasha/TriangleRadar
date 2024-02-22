@@ -25,8 +25,6 @@ class System(db.Model):
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, server_default=db.func.now(), onupdate=db.func.now())
 
-    # Relationship to the Player table (if you have a Player model)
-    # This assumes that the Player model has a foreign key to System
    
 
     def to_dict(self):

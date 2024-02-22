@@ -21,7 +21,8 @@ class Player(db.Model, UserMixin):
     deleted_at = db.Column(db.DateTime, nullable=True)
 
     # Relationship to the Systems table (if you have a Systems model)
-    last_known_location = db.relationship('System', backref='players', lazy=True)
+    last_known_location_id = db.Column(db.Integer, db.ForeignKey(f'{add_prefix_for_prod("systems")}.id'), nullable=True)
+
 
     @property
     def password(self):
