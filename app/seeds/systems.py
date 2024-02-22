@@ -1,32 +1,38 @@
 from app.models import db, Player, System, ThreatLevel
 from app.models.db import environment, SCHEMA
+from sqlalchemy import text
 
 def seed_systems():
-    system1 = System(
-        name="System Alpha",
-        status="Active",
-        threat_level=ThreatLevel.low,
-        notes="Initial seeding."
-    )
+    # Systems with medium threat level
+    medium_threat_systems = ["Niarja", "Kino", "Archee"]
+    # All other systems are considered high threat level
+    high_threat_systems = [
+        "Vale", "Ala", "Wirashoda", "Senda", "Ahtila", "Kuharah",
+        "Tunudan", "Harva", "Raravoss", "Skarkon", "Nani", "Urhinichi",
+        "Otanuomi", "Kraild", "Konola", "Nalvula", "Angymonne", "Ichoriya",
+        "Kaunokka", "Arvasaras", "Sakenta", "Komo", "Ignebaener", "Otela"
+    ]
     
-    system2 = System(
-        name="System Beta",
-        status="Active",
-        threat_level=ThreatLevel.medium,
-        notes="Initial seeding."
-    )  
-    system3 = System(
-        name="System Gamma",
-        status="Active",
-
-        threat_level=ThreatLevel.high,
-        notes="Initial seeding."
-    )
-
-
-    db.session.add(system1)
-    db.session.add(system2)
-    db.session.add(system3)
+    # Seed medium threat level systems
+    for system_name in medium_threat_systems:
+        system = System(
+            name=system_name,
+            status="Active",
+            threat_level=ThreatLevel.medium,
+            notes="Initial seeding."
+        )
+        db.session.add(system)
+    
+    # Seed high threat level systems
+    for system_name in high_threat_systems:
+        system = System(
+            name=system_name,
+            status="Active",
+            threat_level=ThreatLevel.high,
+            notes="Initial seeding."
+        )
+        db.session.add(system)
+        
     db.session.commit()
 
 def undo_systems():
