@@ -6,7 +6,11 @@ from flask import jsonify
 system_routes = Blueprint('systems', __name__)
 
 # Enable CORS for system_routes Blueprint
-CORS(system_routes, origins=["http://localhost:3000"])
+from flask_cors import CORS
+
+# Apply CORS to your systems blueprint, allowing all origins for development
+CORS(system_routes, origins="*")
+
 
 @system_routes.route('/')
 def get_systems():
