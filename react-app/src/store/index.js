@@ -1,11 +1,13 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import session from './session'
+import sessionReducer from './session'; // Assuming session reducer is default exported
+import systemsReducer from './systemsSlice'; // Import the systemsReducer
 
 const rootReducer = combineReducers({
-  session,
+  session: sessionReducer, // Ensure that the session reducer is assigned correctly
+  systems: systemsReducer, // Add the systems reducer
+  // ... any other reducers
 });
-
 
 let enhancer;
 

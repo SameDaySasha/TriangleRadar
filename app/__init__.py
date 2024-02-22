@@ -1,3 +1,5 @@
+#/Users/alexflorea/Desktop/Kyber_dar/practice-for-week-19-python-project-skeleton/app/__init__.py
+
 import os
 from flask import Flask, render_template, request, session, redirect
 from flask_cors import CORS

@@ -1,0 +1,19 @@
+/* Inside /src/components/systems/Systems.css */
+
+.triangle-layout {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* Add more styles to arrange the items in a triangular layout */
+  }
+  
+  .system {
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    /* Add more styles for each system box */
+  }
+  
+  /* You will need to calculate the widths, margins, and possibly use pseudo-elements
+     or other layout tricks to create the triangular shape. */
+  
