@@ -1,7 +1,7 @@
 from flask import Blueprint
 from app.models import System
 from flask import jsonify
-from .db import db  # Make sure this import is correctly pointing to your db instance
+
 
 system_routes = Blueprint('systems', __name__)
 
