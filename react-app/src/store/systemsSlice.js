@@ -1,5 +1,4 @@
 // Inside /src/store/systemsSlice.js
-
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 // Async thunk for fetching systems
@@ -7,7 +6,8 @@ export const fetchSystems = createAsyncThunk(
   'systems/fetchSystems',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await fetch('api/systems');
+      // Ensure the fetch URL is correctly formatted
+      const response = await fetch('/api/systems');
       if (!response.ok) throw new Error('Network response was not ok');
       const data = await response.json();
       return data;
@@ -25,7 +25,7 @@ const systemsSlice = createSlice({
     error: null,
   },
   reducers: {
-    // You can add non-async reducers here if needed
+    // Reducers can be added here if needed
   },
   extraReducers: (builder) => {
     builder
@@ -34,7 +34,7 @@ const systemsSlice = createSlice({
       })
       .addCase(fetchSystems.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        // Add any fetched systems to the array
+        // Add fetched systems to the array
         state.systems = action.payload;
       })
       .addCase(fetchSystems.rejected, (state, action) => {

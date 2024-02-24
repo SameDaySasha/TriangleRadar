@@ -2,23 +2,22 @@ from flask import Blueprint
 from flask_cors import CORS
 from app.models import System
 from flask import jsonify
-
+from flask import request, abort
 system_routes = Blueprint('systems', __name__)
 
 # Enable CORS for system_routes Blueprint
-from flask_cors import CORS
 
 # Apply CORS to your systems blueprint, allowing all origins for development
-CORS(system_routes, origins="*")
 
 
-@system_routes.route('/')
+
+@system_routes.route('')
 def get_systems():
     systems = System.query.all()  # Query all systems from the database
     systems_list = [system.to_dict() for system in systems]  # Convert each system object to a dictionary
     return jsonify(systems_list)  # Return the list of systems as a JSON response
 
-from flask import request, abort  # Import abort to handle not found errors
+  # Import abort to handle not found errors
 
 @system_routes.route('/<int:system_id>')  # Dynamic route to get a system by its ID
 def get_system(system_id):
