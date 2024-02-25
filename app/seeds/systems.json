@@ -1,0 +1,280 @@
+{
+    "nodes": [
+      {
+        "id": "node_archee",
+        "name": "Archee",
+        "type": "Home",
+        "connections": {
+          "back":["filler"],
+          "forward": ["node_vale", "node_angymonne"],
+          "additional": ["filler"]
+        }
+      },
+      {
+        "id": "node_kino",
+        "name": "Kino",
+        "type": "Home",
+        "connections": {
+          "back":["filler"],
+          "forward": ["node_otela", "node_navula"],
+          "additional": []
+        }
+      },
+      {
+        "id": "node_niarja",
+        "name": "Niarja",
+        "type": "Home",
+        "connections": {
+          "back": ["filler"],
+          "forward": ["node_harva", "node_raravoss"],
+          "additional": []
+        }
+      },
+      {
+        "id": "node_vale",
+        "name": "Vale",
+        "type": "Internal",
+        "connections": {
+          "back": ["node_ala"],
+          "forward": ["node_archee", "node_angymonne"],
+          "additional": []
+        }
+      },
+      {
+        "id": "node_angymonne",
+        "name": "Angymonne",
+        "type": "Internal",
+        "connections": {
+          "back": ["node_archee", "node_vale"],
+          "forward":  ["node_ichoriya"],
+          "additional": []
+        }
+      },
+        {
+            "id": "node_ichoriya",
+            "name": "Ichoriya",
+            "type": "Internal",
+            "connections": {
+            "back": ["node_angymonne"],
+            "forward": ["node_kaunokka"],
+            "additional": []
+            }
+            },
+    {   
+        "id": "node_kaunokka",
+        "name": "Kaunokka",
+        "type": "Internal",
+        "connections": {
+        "back": ["node_ichoriya"],
+        "forward": ["node_arvasaras"],
+        "additional": []
+        }
+        },
+    {          
+        "id": "node_arvasaras",
+        "name": "Arvasaras",
+        "type": "Border", 
+        "connections": {
+        "back": ["node_kaunokka"],
+        "forward": ["node_sakenta"],
+        "additional": []
+        }
+        },
+    {
+        "id":"node_sakenta",
+        "name": "Sakenta",
+        "type": "Border",
+        "connections": {
+        "back": ["node_arvasaras"],
+        "forward": ["node_komo"],
+        "additional": []
+        }
+        },
+    {
+        "id":"node_komo",
+        "name": "Komo",
+        "type": "Internal",
+        "connections": {
+        "back": ["node_sakenta"],
+        "forward": ["node_ignabaer"],
+        "additional": []
+        }
+        },  
+    {
+        "id":"node_ignabaer",
+        "name": "Ignabaer",
+        "type": "Internal",
+        "connections": {
+        "back": ["node_komo"],
+        "forward": ["node_otela"],
+        "additional": []
+        }
+        },
+    {   
+        "id":"node_otela", 
+        "name": "Otela",
+        "type": "Internal",
+        "connections": { 
+        "back": ["node_ignabaer"],
+        "forward": ["node_kino", "node_navula"],
+        "additional": []
+        }
+        },
+       {
+        "id":"node_navula",
+        "name": "Navula",
+        "type": "Internal",
+        "connections": {
+        "back": ["node_kino", "node_otela"],
+        "forward": ["node_konola"],
+        "additional": []
+        }
+        },
+    {   
+        "id":"node_konola",
+        "name": "Konola",
+        "type": "Internal",
+        "connections": {
+        "back": ["node_navula"],
+        "forward": ["node_krirald"],
+        "additional": []
+        }
+        },
+    {
+        "id":"node_krirald",
+        "name": "Krirald",
+        "type": "Internal",
+        "connections": {
+        "back": ["node_konola"],
+        "forward": ["node_otanuoumi"],
+        "additional": []
+        }
+        },
+    {
+        "id":"node_otanuoumi",
+        "name": "Otanuoumi",
+        "type": "Border",
+        "connections": {
+        "back": ["node_krirald"],
+        "forward": ["node_urhinichi"],
+        "additional": []
+        }
+        },
+        {
+        "id":"node_urhinichi",
+        "name": "Urhinichi",
+        "type": "Border",
+        "connections": {
+        "back": ["node_otanuoumi"],
+        "forward": ["node_nani"],
+        "additional": []
+        } 
+       },
+       {
+        "id":"node_nani",
+        "name": "Nani",
+        "type": "Internal",
+        "connections": {
+        "back": ["node_urhinichi"],
+        "forward": ["node_skarkon"],
+        "additional": []
+        }
+        },
+        {
+        "id":"node_skarkon",
+        "name": "Skarkon",
+        "type": "Internal",
+        "connections": {  
+        "back": ["node_nani"],
+        "forward": ["node_raravoss"],
+        "additional": []
+        }
+       },
+       {    
+        "id":"node_raravoss",
+        "name": "Raravoss",
+        "type": "Internal",
+        "connections": {
+        "back": ["node_skarkon"],
+        "forward": ["node_niarja", "node_harva"],
+        "additional": []
+        }
+        },
+        {
+        "id":"node_harva",
+        "name": "Harva",
+        "type": "Internal",
+        "connections": {
+        "back": ["node_niarja", "node_raravoss"],
+        "forward": ["node_tunudan"],
+        "additional": []
+       }
+    },
+    {
+        "id":"node_tunudan",
+        "name": "Tunudan",
+        "type": "Internal",
+        "connections": {
+        "back": ["node_harva"],
+        "forward": ["node_kuharah"],
+        "additional": []
+        }
+        },
+    {
+        "id":"node_kuharah",
+        "name": "Kuharah",
+        "type": "Internal",
+        "connections": {
+        "back": ["node_tunudan"],
+        "forward": ["node_ahtila"],
+        "additional": [] 
+    } },
+        {
+        "id":"node_ahtila",
+        "name": "Ahtila",
+        "type": "Internal",
+        "connections": {
+        "back": ["node_kuharah"],
+        "forward": ["node_senda"],
+        "additional": []
+        
+        }
+    },
+    {
+        "id":"node_senda",
+        "name": "Senda",
+        "type": "Internal",
+        "connections": {
+        "back": ["node_ahtila"],
+        "forward":[ "node_niarja"],
+        "additional": []
+        }
+    },
+    
+    {
+        "id":"node_wirashoda",
+        "name": "Wirashoda",
+        "type": "Internal",
+        "connections": {
+        "back": ["node_niarja"],
+        "forward": ["node_ala"],
+        "additional": []
+    }
+},
+{
+        "id":"node_ala",
+        "name": "Ala",
+        "type": "Internal",
+        "connections": {
+        "back": ["node_wirashoda"],
+        "forward": ["node_vale"],
+        "additional": []
+    }
+}
+
+    ]
+
+  }
+
+
+  

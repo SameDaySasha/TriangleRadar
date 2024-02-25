@@ -5,9 +5,7 @@ from flask import jsonify
 from flask import request, abort
 system_routes = Blueprint('systems', __name__)
 
-# Enable CORS for system_routes Blueprint
-
-# Apply CORS to your systems blueprint, allowing all origins for development
+CORS(system_routes)
 
 
 
