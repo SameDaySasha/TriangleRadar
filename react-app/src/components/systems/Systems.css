@@ -1,20 +1,23 @@
-.triangle-layout {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .system-row {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .system {
-    margin: 5px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    text-align: center;
-    /* Set a fixed width or use flex-basis with flex-grow to control the box sizes */
-    width: 100px; /* Adjust as needed */
-  }
-  
+.systems-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust based on your preference */
+  gap: 10px; /* Space between cells */
+  padding: 20px; /* Padding around the grid */
+}
+
+.system-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px; /* Padding inside each cell */
+  color: white; /* Text color */
+  font-size: 1rem; /* Adjust font size as needed */
+}
+
+.red {
+  background-color: red;
+}
+
+.black {
+  background-color: black;
+}
