@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchSystems } from '../../store/systemsSlice';
-import './Systems.css'; // Make sure the path to your CSS file is correct
+import './Systems.css';
 
 const Systems = () => {
   const dispatch = useDispatch();
@@ -12,38 +12,16 @@ const Systems = () => {
     dispatch(fetchSystems());
   }, [dispatch]);
 
-  const renderSystemsInRows = (systems) => {
-    const rows = [];
-    let currentRow = [];
-    let itemsInRow = 1;
-
-    systems.forEach((system, index) => {
-      currentRow.push(
-        <div key={system.id} className="system">
-          {system.name}
-        </div>
-      );
-      if (currentRow.length === itemsInRow) {
-        rows.push(
-          <div key={index} className="system-row">
-            {currentRow}
-          </div>
-        );
-        currentRow = [];
-        itemsInRow++;
-      }
-    });
-
-    // In case the last row isn't full
-    if (currentRow.length > 0) {
-      rows.push(
-        <div className="system-row">
-          {currentRow}
-        </div>
-      );
-    }
-
-    return rows;
+  // Simplified render function to display systems
+  const renderSystems = (systems) => {
+    return systems.map((system, index) => (
+      <div key={index} className="system">
+        <h2>{system.name}</h2>
+        <p>Status: {system.status}</p>
+        <p>Threat Level: {system.threat_level}</p>
+        {/* Simplified for clarity; add more details as needed */}
+      </div>
+    ));
   };
 
   if (status === 'loading') {
@@ -55,8 +33,8 @@ const Systems = () => {
   }
 
   return (
-    <div className="triangle-layout">
-      {renderSystemsInRows(systems)}
+    <div className="systems-layout">
+      {renderSystems(systems)}
     </div>
   );
 };
