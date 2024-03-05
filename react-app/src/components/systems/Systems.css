@@ -1,23 +1,38 @@
-.systems-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust based on your preference */
-  gap: 10px; /* Space between cells */
-  padding: 20px; /* Padding around the grid */
-}
-
-.system-cell {
+/* Styling for individual system nodes, as previously defined */
+.system-node {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px; /* Padding inside each cell */
-  color: white; /* Text color */
-  font-size: 1rem; /* Adjust font size as needed */
+  padding: 20px;
+  color: white;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  background-color: #333; /* Default background color */
 }
 
-.red {
-  background-color: red;
+/* Styling for the connections container */
+.connections {
+  width: 100%;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed #777; /* Visual separator */
 }
 
-.black {
-  background-color: black;
+/* Specific styles for connection nodes */
+.connection-node {
+  padding: 5px 10px;
+  margin: 5px;
+  background-color: #555; /* Slightly lighter than the system node for contrast */
+  border-radius: 5px; /* Rounded corners for visual appeal */
+  color: #fff;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* Optional: Highlighting on hover for connection nodes */
+.connection-node:hover {
+  background-color: #666;
+  cursor: pointer;
 }
