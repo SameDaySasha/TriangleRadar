@@ -14,11 +14,11 @@
 
 .itemid {
   position: absolute;
-  width: 5px; /* Keep your cell sizes */
-  height: 5px; /* Keep your cell sizes */
-  border: 1px solid #000;
-  font-size: 12px;
-  font-weight: bold;
+  width: 50px; /* Keep your cell sizes */
+  height: 50px; /* Keep your cell sizes */
+  border: 1px solid rgb(228, 4, 4);
+  font-size: 6px;
+  text-align:center;
   color: #000;
   background-color: #fff;
   transition: all 0.3s ease;
@@ -26,5 +26,5 @@
 }
 
 .itemid10, .itemid11, .itemid12, .itemid13, .itemid14, .itemid15, .itemid16, .itemid17, .itemid18 {
-  transform: scaleX(5); /* This scales the nodes along the X-axis */
+  transform: scaleX(4); /* This scales the nodes along the X-axis */
 }

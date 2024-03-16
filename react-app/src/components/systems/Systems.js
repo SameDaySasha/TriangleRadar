@@ -12,7 +12,7 @@ const Systems = () => {
   }, [dispatch]);
 
   const calculatePosition = (id) => {
-    const step = 75;
+    const step = 60;
     const bottomLegStep = step * 1.98; // Increased step size for the bottom leg
     let position = { x: 0, y: 0 };
     let directionPhase = 1; // Start with phase 1 (southeast)
