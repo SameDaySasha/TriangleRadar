@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchSystems } from '../../store/systemsSlice';
-import './Systems.css'; // Make sure to have this CSS file
+import './Systems.css'; // Ensure your CSS file defines .system-cell and .systems-grid
 
 const Systems = () => {
   const dispatch = useDispatch();
@@ -10,6 +10,38 @@ const Systems = () => {
   useEffect(() => {
     dispatch(fetchSystems());
   }, [dispatch]);
+
+  const calculatePosition = (id) => {
+    const step = 100;
+    let position = { x: 0, y: 0 };
+    let directionPhase = 1; // Start with phase 1 (southeast)
+  
+    for (let i = 1; i < id; i++) {
+      if (i === 10) directionPhase = 2; // Change to phase 2 (left)
+      if (i === 19) directionPhase = 3; // Change to phase 3 (up-right)
+  
+      switch (directionPhase) {
+        case 1: // Southeast
+          position.x += step;
+          position.y += step;
+          break;
+        case 2: // Left
+          position.x -= step;
+          break;
+        case 3: // Up-right
+          position.x += step;
+          position.y -= step;
+          break;
+      }
+    }
+  
+    return {
+      left: `${position.x}px`,
+      top: `${position.y}px`,
+    };
+  };
+  
+  
 
   if (status === 'loading') {
     return <div>Loading systems...</div>;
@@ -20,14 +52,20 @@ const Systems = () => {
   }
 
   return (
-    <div className="systems-grid">
-      {systems.map((system, index) => (
-        <div key={system.name} className={`system-cell ${index % 2 === 0 ? 'red' : 'black'}`}>
-          <h3>{system.name}</h3>
-        </div>
-      ))}
+    <div className="systems-container">
+      <div className="systems-grid">
+        {systems.map(system => {
+          const positionStyle = calculatePosition(system.id);
+          return (
+            <div key={system.id} className={`system-cell ${system.status}`} style={positionStyle}>
+              <h3>{system.name}</h3>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
+
 
 export default Systems;

@@ -1,23 +1,19 @@
+.systems-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+  width: 100%; /* Full viewport width */
+}
+
 .systems-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust based on your preference */
-  gap: 10px; /* Space between cells */
-  padding: 20px; /* Padding around the grid */
+  position: absolute;
+  /* Remove the fixed width and height, let it grow with content */
 }
 
 .system-cell {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px; /* Padding inside each cell */
-  color: white; /* Text color */
-  font-size: 1rem; /* Adjust font size as needed */
-}
-
-.red {
-  background-color: red;
-}
-
-.black {
-  background-color: black;
+  position: absolute;
+  width: 40px; /* Keep your cell sizes */
+  height: 20px; /* Keep your cell sizes */
+  /* ...rest of your styles */
 }
