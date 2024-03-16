@@ -2,18 +2,29 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Full viewport height */
+  height: 100%; /* Full viewport height */
   width: 100%; /* Full viewport width */
+  padding-right: 100px;
 }
 
 .systems-grid {
   position: absolute;
-  /* Remove the fixed width and height, let it grow with content */
+  border:0em;
 }
 
-.system-cell {
+.itemid {
   position: absolute;
-  width: 40px; /* Keep your cell sizes */
-  height: 20px; /* Keep your cell sizes */
-  /* ...rest of your styles */
+  width: 5px; /* Keep your cell sizes */
+  height: 5px; /* Keep your cell sizes */
+  border: 1px solid #000;
+  font-size: 12px;
+  font-weight: bold;
+  color: #000;
+  background-color: #fff;
+  transition: all 0.3s ease;
+ 
+}
+
+.itemid10, .itemid11, .itemid12, .itemid13, .itemid14, .itemid15, .itemid16, .itemid17, .itemid18 {
+  transform: scaleX(5); /* This scales the nodes along the X-axis */
 }

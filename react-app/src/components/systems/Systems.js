@@ -12,7 +12,8 @@ const Systems = () => {
   }, [dispatch]);
 
   const calculatePosition = (id) => {
-    const step = 100;
+    const step = 75;
+    const bottomLegStep = step * 1.98; // Increased step size for the bottom leg
     let position = { x: 0, y: 0 };
     let directionPhase = 1; // Start with phase 1 (southeast)
   
@@ -26,7 +27,7 @@ const Systems = () => {
           position.y += step;
           break;
         case 2: // Left
-          position.x -= step;
+          position.x -= bottomLegStep; // Use the increased step size for the bottom leg
           break;
         case 3: // Up-right
           position.x += step;
@@ -57,7 +58,7 @@ const Systems = () => {
         {systems.map(system => {
           const positionStyle = calculatePosition(system.id);
           return (
-            <div key={system.id} className={`system-cell ${system.status}`} style={positionStyle}>
+            <div key={system.id} className={`itemid ${system.id}`} style={positionStyle}>
               <h3>{system.name}</h3>
             </div>
           );
