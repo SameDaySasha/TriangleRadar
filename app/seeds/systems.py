@@ -16,41 +16,7 @@ def seed_systems():
             },
             "notes": "{}"
         },
-        {
-            "name": "Vale",
-            "status": "Internal",
-            "threat_level": ThreatLevel.high,
-            "connections": {
-                "back": ["Ala"],
-                "forward": ["Archee", "Angymonne"],
-                "additional": []
-            },
-            "notes": "{}"
-        },
-        # Adding systems from JSON file
-        {
-            "name": "Kino",
-            "status": "Home",  # Assuming status based on JSON type
-            "threat_level": ThreatLevel.medium,  # Placeholder for threat level
-            "connections": {
-                "back": ["filler"],
-                "forward": ["Otela", "Navula"],
-                "additional": []
-            },
-            "notes": "{}"
-        },
-        {
-            "name": "Niarja",
-            "status": "Home",  # Assuming status based on JSON type
-            "threat_level": ThreatLevel.medium,  # Placeholder for threat level
-            "connections": {
-                "back": ["filler"],
-                "forward": ["Harva", "Raravoss"],
-                "additional": []
-            },
-            "notes": "{}"
-        },
-        {
+         {
             "name": "Angymonne",
             "status": "Internal",
             "threat_level":ThreatLevel.medium,  # Placeholder for threat level
@@ -61,7 +27,7 @@ def seed_systems():
             },
             "notes": "{}"
         },
-        {
+         {
             "name": "Ichoriya",
             "status": "Internal",
             "threat_level": ThreatLevel.medium,
@@ -72,7 +38,7 @@ def seed_systems():
             },
             "notes": "{}"
         },
-        {
+            {
             "name": "Kaunokka",
             "status": "Internal",
             "threat_level": ThreatLevel.medium,
@@ -83,6 +49,7 @@ def seed_systems():
             },
             "notes": "{}"
         },
+          
         {
             "name": "Arvasaras",
             "status": "Border",
@@ -93,7 +60,8 @@ def seed_systems():
                 "additional": []
             },
             "notes": "{}"
-        },
+        },  
+            
         {
             "name": "Sakenta",
             "status": "Border",
@@ -105,6 +73,7 @@ def seed_systems():
             },
             "notes": "{}"
         },
+        
         {
             "name": "Komo",
             "status": "Internal",
@@ -116,7 +85,7 @@ def seed_systems():
             },
             "notes": "{}"
         },
-        {
+          {
             "name": "Ignabaer",
             "status": "Internal",
             "threat_level": ThreatLevel.medium,
@@ -127,7 +96,7 @@ def seed_systems():
             },
             "notes": "{}"
         },
-        {
+           {
             "name": "Otela",
             "status": "Internal",
             "threat_level": ThreatLevel.medium,
@@ -139,6 +108,18 @@ def seed_systems():
             "notes": "{}"
         },
         {
+            "name": "Kino",
+            "status": "Home",  # Assuming status based on JSON type
+            "threat_level": ThreatLevel.medium,  # Placeholder for threat level
+            "connections": {
+                "back": ["filler"],
+                "forward": ["Otela", "Navula"],
+                "additional": []
+            },
+            "notes": "{}"
+        },       
+         
+        {
             "name": "Navula",
             "status": "Internal",
             "threat_level": ThreatLevel.medium,
@@ -149,6 +130,7 @@ def seed_systems():
             },
             "notes": "{}"
         },
+        
         {
             "name": "Konola",
             "status": "Internal",
@@ -160,6 +142,7 @@ def seed_systems():
             },
             "notes": "{}"
         },
+        
         {
             "name": "Krirald",
             "status": "Internal",
@@ -171,7 +154,7 @@ def seed_systems():
             },
             "notes": "{}"
         },
-        {
+         {
             "name": "Otanuoumi",
             "status": "Border",
             "threat_level": ThreatLevel.medium,
@@ -181,7 +164,7 @@ def seed_systems():
                 "additional": []
             },
             "notes": "{}"
-        },
+        },      
         {
             "name": "Urhinichi",
             "status": "Border",
@@ -193,6 +176,7 @@ def seed_systems():
             },
             "notes": "{}"
         },
+    
         {
             "name": "Nani",
             "status": "Internal",
@@ -204,6 +188,7 @@ def seed_systems():
             },
             "notes": "{}"
         },
+     
         {
             "name": "Skarkon",
             "status": "Internal",
@@ -222,6 +207,17 @@ def seed_systems():
             "connections": {
                 "back": ["Skarkon"],
                 "forward": ["Niarja", "Harva"],
+                "additional": []
+            },
+            "notes": "{}"
+        },
+         {
+            "name": "Niarja",
+            "status": "Home",  # Assuming status based on JSON type
+            "threat_level": ThreatLevel.medium,  # Placeholder for threat level
+            "connections": {
+                "back": ["filler"],
+                "forward": ["Harva", "Raravoss"],
                 "additional": []
             },
             "notes": "{}"
@@ -299,6 +295,17 @@ def seed_systems():
             "connections": {
                 "back": ["Wirashoda"],
                 "forward": ["Vale"],
+                "additional": []
+            },
+            "notes": "{}"
+        },
+          {
+            "name": "Vale",
+            "status": "Internal",
+            "threat_level": ThreatLevel.high,
+            "connections": {
+                "back": ["Ala"],
+                "forward": ["Archee", "Angymonne"],
                 "additional": []
             },
             "notes": "{}"
