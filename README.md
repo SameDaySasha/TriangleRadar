@@ -1,4 +1,80 @@
 
+
+# Pochven Interactive Radar
+![Pochven Interactive Radar Schema](schema.png)
+## Overview
+
+The Pochven Interactive Radar is an advanced tool designed to enhance the strategic gameplay of EVE Online players within the Pochven region. Utilizing real-time data and user-contributed reports, this application provides a dynamic, interactive map that aids Kybernauts in navigating the complex landscape of Pochven. With features designed for fleet commanders, scouts, and players, the radar facilitates informed decision-making through color-guided tags for each system, comprehensive fleet management, and secure login mechanisms.
+
+### Key Features
+
+- **Interactive Map Visualization:** A graphical representation of the Pochven region, allowing users to explore systems with real-time updates.
+- **Data Reporting & Input:** Users can input D-Scan reports and attach notes or tags to systems, providing valuable insights for fellow players.
+- **Data Retrieval:** Integration with the EVE Swagger Interface (ESI) for live game data, and authentication via EVE's Single Sign-On (SSO) service.
+- **User Authentication:** Secure OAuth 2.0 flow for user authentication, ensuring privacy and security for personal information and in-game activities.
+- **Responsive Design:** Crafted to provide an optimal experience across various devices, enabling players to stay informed regardless of their platform.
+
+## User Stories
+
+### Key Features
+
+- **Interactive Map Visualization:** Engage with a graphical representation of the Pochven region, featuring clickable systems with real-time updates.
+- **Data Reporting & Input:** Submit D-Scan reports, attach notes or tags to systems, and utilize timestamps to ensure up-to-date information.
+- **Data Retrieval:** Seamlessly integrate with EVE's Swagger Interface (ESI) for live data pulls and employ SSO for user authentication.
+- **User Authentication:** Implement secure OAuth 2.0 authentication processes, safeguarding personal information and in-game activities.
+- **Responsive Design:** Ensure an optimal user experience across different devices, making the tool accessible on monitors, tablets, and mobile devices.
+
+## User Stories
+
+### Essential User Stories
+- As a player, I want to see an interactive map of Pochven, to understand the region's layout.
+- As a fleet commander, I want to see my current location on the map in real-time, for informed navigational decisions.
+- As a scout, I want to report hostile sightings, alerting other players of potential dangers.
+- As a fleet commander, I want to create and schedule fleet operations, organizing my fleet effectively.
+- As a fleet member, I want to view scheduled fleet operations, planning my gameplay sessions around these events.
+- As a fleet commander, I want to manage roles and ship fittings of my fleet members, ensuring a balanced and effective fleet composition.
+- As a player, I want to log in securely, keeping my personal information and in-game activities private.
+
+### Intermediate User Stories
+- As a fleet commander, I want to receive notifications of upcoming scheduled events, preparing in advance.
+- As a scout, I want to attach notes and details to my hostile sightings reports, providing comprehensive information to other players.
+- As a player, I want to view the history of my movements and actions, analyzing my gameplay to improve.
+- As a fleet member, I want to see the fleet's composition in real-time during an operation, adapting to changing tactical situations.
+- As a fleet commander, I want to see a list of all active fleets, coordinating with other commanders.
+
+### Advanced User Stories
+- As a fleet commander, I want to integrate real-time kill reports, assessing and reacting to losses immediately.
+- As a player, I want to compare my skills with ship fitting requirements, training necessary skills for specific fleet roles.
+- As a fleet commander, I want to generate after-action reports including detailed metrics and statistics, reviewing the fleet's performance to learn from it.
+- As a player, I want to search for specific events, systems, or players, finding information quickly and easily.
+
+### Stretch Goal User Stories
+- As a fleet commander, I want to automatically import D-Scan data to analyze fleet compositions, making strategic decisions based on potential threats or targets.
+- As a player, I want to access the tool on my mobile device, staying updated when I'm not at my computer.
+- As a fleet member, I want to be recommended ship fittings based on my skills and available ships, being most effective in fleet operations.
+- As a fleet commander, I want the tool to suggest optimal fleet compositions based on the current meta and my fleet's capabilities, planning successful operations.
+- As a developer, I want the application to have an open API, so that other developers can create plugins or additional tools that enhance the functionality of my application.
+
+## Getting Started
+
+1. **Prerequisites:** Familiarize yourself with the EVE Swagger Interface documentation and EVE Online's SSO for user authentication.
+2. **Installation:** Instructions will be provided for setting up the Pochven Interactive Radar on your preferred platform.
+3. **Usage:** Detailed guides on how to use the interactive map and contribute to the collective intelligence of Kybernauts will be available.
+
+## Contributing
+
+We welcome contributions from the community. Please read our contributing guidelines before submitting pull requests or suggestions to improve the radar.
+
+## License
+
+This project is licensed under the [LICENSE NAME] - see the LICENSE file for details.
+
+## Acknowledgments
+
+- EVE Online and the EVE Swagger Interface (ESI) for providing the data and authentication mechanism that powers this application.
+- Our dedicated contributors and the Kybernaut community for their invaluable insights and feedback.
+
+
 ## Getting started
 1. Clone this repository (only this branch)
 
