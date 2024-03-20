@@ -1,0 +1,48 @@
+@font-face {
+    font-family: 'TriglavianFont';
+    src: url('../../../public/fonts/TriglavianTrue.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  /* Apply the custom font to elements */
+  h1, .link {
+    font-family: 'TriglavianFont', sans-serif;
+  }
+  
+
+.landing-page {
+    background-color: black;
+    color: #f00; /* Shades of red for text */
+    font-family: 'Arial', sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  h1 {
+    color: #ff0000; /* Brighter shade of red for headings */
+  }
+  
+  .links {
+    margin-top: 20px;
+  }
+  
+  .link {
+    background-color: #ff0000; /* Red background for links */
+    color: black;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px; /* Optional: for rounded corners */
+    transition: background-color 0.3s ease;
+  }
+  
+  .link:hover {
+    background-color: #a30000; /* Darker shade of red on hover */
+  }
+  
