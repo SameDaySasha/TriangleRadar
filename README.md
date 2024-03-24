@@ -55,6 +55,61 @@ The Pochven Interactive Radar is an advanced tool designed to enhance the strate
 - As a fleet commander, I want the tool to suggest optimal fleet compositions based on the current meta and my fleet's capabilities, planning successful operations.
 - As a developer, I want the application to have an open API, so that other developers can create plugins or additional tools that enhance the functionality of my application.
 
+## Application Routes Overview
+
+To support the user stories, our application offers comprehensive RESTful routes for data management and user interactions.
+
+### Interactive Map & System Data
+
+- **GET `/systems`**: Retrieves a comprehensive list of systems within the Pochven region, including security status and current events.
+- **GET `/systems/:id`**: Fetches detailed information about a specific system, aiding players in strategic planning.
+
+### User Accounts & Authentication
+
+- **POST `/users/register`**: Registers a new user with necessary details for secure login.
+- **POST `/users/login`**: Authenticates a user, providing a token for session management.
+
+### Fleet Operations
+
+- **POST `/fleets`**: Enables fleet commanders to create and schedule new fleet operations.
+- **GET `/fleets`**: Lists all scheduled fleet operations for planning and coordination.
+- **PUT `/fleets/:id`**: Updates details of an existing fleet operation.
+- **DELETE `/fleets/:id`**: Removes a scheduled fleet operation from the system.
+
+### Scouting and Reporting
+
+- **POST `/reports`**: Allows for the submission of hostile sighting reports by scouts, with optional detailed notes.
+- **GET `/reports`**: Retrieves reports, filterable by system, date, or event, for strategic decision-making.
+- **DELETE `/reports/:id`**: Permits the deletion of a report, for cases of errors or when threats are resolved.
+
+### User Data & Preferences
+
+- **GET `/users/:id`**: Accesses detailed profile information, supporting the analysis of personal gameplay history.
+- **PUT `/users/:id`**: Updates user profile settings and preferences for a tailored experience.
+
+### Fleet Composition & Management
+
+- **GET `/fleets/:id/members`**: Lists members of a fleet, including roles and ship fittings, to understand real-time composition.
+- **POST `/fleets/:id/members`**: Adds a new member to a fleet with specified role and ship fitting.
+- **PUT `/fleets/:id/members/:memberId`**: Updates a fleet member's details, for role adjustments or fitting changes.
+- **DELETE `/fleets/:id/members/:memberId`**: Removes a member from a fleet, aiding in composition management.
+
+### Advanced & Stretch Goal Features
+
+- **POST `/analytics/dscan`**: For importing and analyzing D-Scan data to inform strategic decisions.
+- **GET `/users/:id/skills`**: Compares user skills against ship fitting requirements for role suitability.
+- **POST `/reports/afteraction`**: Generates after-action reports with detailed metrics and statistics for review.
+
+### Notes on Implementation
+
+- **Security and Authentication**: Routes requiring authentication should verify the user's session token.
+- **Data Validation**: Input validation is crucial for security and data integrity.
+- **Error Handling**: Comprehensive error handling ensures a user-friendly experience and facilitates debugging.
+
+This framework outlines the core functionalities required to support our project's goals, enabling strategic gameplay enhancements for the Pochven region explorers.
+
+
+
 ## Getting Started
 
 1. **Prerequisites:** Familiarize yourself with the EVE Swagger Interface documentation and EVE Online's SSO for user authentication.
