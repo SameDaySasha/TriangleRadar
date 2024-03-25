@@ -55,51 +55,190 @@ The Pochven Interactive Radar is an advanced tool designed to enhance the strate
 - As a fleet commander, I want the tool to suggest optimal fleet compositions based on the current meta and my fleet's capabilities, planning successful operations.
 - As a developer, I want the application to have an open API, so that other developers can create plugins or additional tools that enhance the functionality of my application.
 
-## Application Routes Overview
 
-To support the user stories, our application offers comprehensive RESTful routes for data management and user interactions.
+## API Documentation
 
-### Interactive Map & System Data
+### PLAYER MANAGEMENT
 
-- **GET `/systems`**: Retrieves a comprehensive list of systems within the Pochven region, including security status and current events.
-- **GET `/systems/:id`**: Fetches detailed information about a specific system, aiding players in strategic planning.
+#### Log In a Player
 
-### User Accounts & Authentication
+Authenticates a player, ensuring secure access to their personal information and activities.
 
-- **POST `/users/register`**: Registers a new user with necessary details for secure login.
-- **POST `/users/login`**: Authenticates a user, providing a token for session management.
+* **Require Authentication:** false
+* **Request**
+  * **Method:** POST
+  * **URL:** `/login`
+  * **Headers:**
+    * **Content-Type:** application/json
+  * **Body:**
 
-### Fleet Operations
+    ```json
+    {
+      "character_id": "characterUniqueID",
+      "password": "yourPassword"
+    }
+    ```
 
-- **POST `/fleets`**: Enables fleet commanders to create and schedule new fleet operations.
-- **GET `/fleets`**: Lists all scheduled fleet operations for planning and coordination.
-- **PUT `/fleets/:id`**: Updates details of an existing fleet operation.
-- **DELETE `/fleets/:id`**: Removes a scheduled fleet operation from the system.
+* **Successful Response**
+  * **Status Code:** 200
+  * **Headers:**
+    * **Content-Type:** application/json
+  * **Body:**
 
-### Scouting and Reporting
+    ```json
+    {
+      "message": "Login successful",
+      "player": {
+        "id": 1,
+        "character_name": "Player One",
+        "character_id": "123456789",
+        "skill_points": 5000
+      }
+    }
+    ```
 
-- **POST `/reports`**: Allows for the submission of hostile sighting reports by scouts, with optional detailed notes.
-- **GET `/reports`**: Retrieves reports, filterable by system, date, or event, for strategic decision-making.
-- **DELETE `/reports/:id`**: Permits the deletion of a report, for cases of errors or when threats are resolved.
+* **Error Response: Invalid credentials**
+  * **Status Code:** 401
+  * **Headers:**
+    * **Content-Type:** application/json
+  * **Body:**
 
-### User Data & Preferences
+    ```json
+    {
+      "message": "Invalid credentials"
+    }
+    ```
 
-- **GET `/users/:id`**: Accesses detailed profile information, supporting the analysis of personal gameplay history.
-- **PUT `/users/:id`**: Updates user profile settings and preferences for a tailored experience.
+#### Report Hostile Sighting
 
-### Fleet Composition & Management
+Allows scouts to report sightings of hostiles in a system, contributing to the collective safety and awareness.
 
-- **GET `/fleets/:id/members`**: Lists members of a fleet, including roles and ship fittings, to understand real-time composition.
-- **POST `/fleets/:id/members`**: Adds a new member to a fleet with specified role and ship fitting.
-- **PUT `/fleets/:id/members/:memberId`**: Updates a fleet member's details, for role adjustments or fitting changes.
-- **DELETE `/fleets/:id/members/:memberId`**: Removes a member from a fleet, aiding in composition management.
+* **Require Authentication:** true
+* **Request**
+  * **Method:** POST
+  * **URL:** `/hostile_sightings`
+  * **Headers:**
+    * **Content-Type:** application/json
+  * **Body:**
 
-### Advanced & Stretch Goal Features
+    ```json
+    {
+      "system_id": 2,
+      "reported_by": 1,
+      "sighting_details": "Hostile fleet spotted in vicinity."
+    }
+    ```
 
-- **POST `/analytics/dscan`**: For importing and analyzing D-Scan data to inform strategic decisions.
-- **GET `/users/:id/skills`**: Compares user skills against ship fitting requirements for role suitability.
-- **POST `/reports/afteraction`**: Generates after-action reports with detailed metrics and statistics for review.
+* **Successful Response**
+  * **Status Code:** 201
+  * **Headers:**
+    * **Content-Type:** application/json
+  * **Body:**
 
+    ```json
+    {
+      "message": "Sighting reported successfully",
+      "sighting": {
+        "id": 1,
+        "system_id": 2,
+        "reported_by": 1,
+        "sighting_details": "Hostile fleet spotted in vicinity.",
+        "timestamp": "2023-03-19T20:39:36Z"
+      }
+    }
+    ```
+
+* **Error Response: Unauthorized or invalid data**
+  * **Status Code:** 401/400
+  * **Headers:**
+    * **Content-Type:** application/json
+  * **Body:**
+
+    ```json
+    {
+      "message": "Unauthorized" // Or specific validation errors
+    }
+    ```
+
+### SYSTEM MANAGEMENT
+
+#### Get All Systems
+
+Returns a list of all systems within the radar map, including details such as name, status, threat level, and connections.
+
+* **Require Authentication:** false (or true, if required)
+* **Request**
+  * **Method:** GET
+  * **URL:** `/systems`
+  * **Body:** none
+
+* **Successful Response**
+  * **Status Code:** 200
+  * **Headers:**
+    * **Content-Type:** application/json
+  * **Body:**
+
+    ```json
+    [
+      {
+        "id": 1,
+        "name": "Archee",
+        "status": "Active",
+        "threat_level": "medium",
+        "connections": {
+          "back": ["filler"],
+          "forward": ["Vale", "Angymonne"],
+          "additional": ["filler"]
+        },
+        "notes": "{}"
+      },
+      // Additional systems...
+    ]
+    ```
+
+#### Get System by ID
+
+Fetches a single system by its ID, including its name, status, threat level, connections, and notes.
+
+* **Require Authentication:** false (or true, if required)
+* **Request**
+  * **Method:** GET
+  * **URL:** `/systems/<int:system_id>`
+  * **Body:** none
+
+* **Successful Response**
+  * **Status Code:** 200
+  * **Headers:**
+    * **Content-Type:** application/json
+  * **Body:**
+
+    ```json
+    {
+      "id": 2,
+      "name": "Angymonne",
+      "status": "Internal",
+      "threat_level": "medium",
+      "connections": {
+        "back": ["Archee", "Vale"],
+        "forward": ["Ichoriya"],
+        "additional": []
+      },
+      "notes": "{}"
+    }
+    ```
+
+* **Error Response: System not found**
+  * **Status Code:** 404
+  * **Headers:**
+    * **Content-Type:** application/json
+  * **Body:**
+  ```json
+    {
+      "message": "System not found"
+    }
+    ```
+
+    
 ### Notes on Implementation
 
 - **Security and Authentication**: Routes requiring authentication should verify the user's session token.
