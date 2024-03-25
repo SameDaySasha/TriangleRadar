@@ -238,7 +238,140 @@ Fetches a single system by its ID, including its name, status, threat level, con
     }
     ```
 
-    
+ ### FLEET MANAGEMENT
+
+#### Create and Schedule Fleet Operations
+
+Allows fleet commanders to create and schedule operations, organizing their fleet effectively.
+
+* **Require Authentication:** true
+* **Request**
+  * **Method:** POST
+  * **URL:** `/fleet_operations`
+  * **Headers:**
+    * **Content-Type:** application/json
+  * **Body:**
+
+    ```json
+    {
+      "name": "Operation Freedom",
+      "organizer_id": 1,
+      "start_time": "2024-04-01T14:00:00Z",
+      "status": "Scheduled"
+    }
+    ```
+
+* **Successful Response**
+  * **Status Code:** 201
+  * **Headers:**
+    * **Content-Type:** application/json
+  * **Body:**
+
+    ```json
+    {
+      "message": "Fleet operation created successfully",
+      "operation": {
+        "id": 1,
+        "name": "Operation Freedom",
+        "organizer_id": 1,
+        "start_time": "2024-04-01T14:00:00Z",
+        "status": "Scheduled"
+      }
+    }
+    ```
+
+* **Error Response: Unauthorized or invalid data**
+  * **Status Code:** 401/400
+  * **Headers:**
+    * **Content-Type:** application/json
+  * **Body:**
+
+    ```json
+    {
+      "message": "Unauthorized" // Or specific validation errors
+    }
+    ```
+
+#### View Scheduled Fleet Operations
+
+Allows fleet members to view all scheduled fleet operations, aiding in planning their gameplay sessions.
+
+* **Require Authentication:** true
+* **Request**
+  * **Method:** GET
+  * **URL:** `/fleet_operations`
+  * **Body:** none
+
+* **Successful Response**
+  * **Status Code:** 200
+  * **Headers:**
+    * **Content-Type:** application/json
+  * **Body:**
+
+    ```json
+    [
+      {
+        "id": 1,
+        "name": "Operation Freedom",
+        "organizer_id": 1,
+        "start_time": "2024-04-01T14:00:00Z",
+        "status": "Scheduled"
+      },
+      // Additional operations...
+    ]
+    ```
+
+#### Manage Fleet Member Roles and Ship Fittings
+
+Enables fleet commanders to assign roles and manage ship fittings for their fleet members, ensuring a balanced fleet composition.
+
+* **Require Authentication:** true
+* **Request**
+  * **Method:** PUT
+  * **URL:** `/fleet_members/<int:member_id>`
+  * **Headers:**
+    * **Content-Type:** application/json
+  * **Body:**
+
+    ```json
+    {
+      "role": "Scout",
+      "ship_fitting_id": 2
+    }
+    ```
+
+* **Successful Response**
+  * **Status Code:** 200
+  * **Headers:**
+    * **Content-Type:** application/json
+  * **Body:**
+
+    ```json
+    {
+      "message": "Fleet member updated successfully",
+      "member": {
+        "fleet_id": 1,
+        "player_id": 2,
+        "role": "Scout",
+        "ship_fitting_id": 2
+      }
+    }
+    ```
+
+* **Error Response: Unauthorized or Not Found**
+  * **Status Code:** 401/404
+  * **Headers:**
+    * **Content-Type:** application/json
+  * **Body:**
+
+    ```json
+    {
+      "message": "Unauthorized" // Or "Fleet member not found"
+    }
+    ```
+
+
+   
 ### Notes on Implementation
 
 - **Security and Authentication**: Routes requiring authentication should verify the user's session token.
