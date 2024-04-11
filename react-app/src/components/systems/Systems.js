@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchSystems } from '../../store/systemsSlice';
+import { logout } from '../../store/session';
 import './Systems.css'; // Ensure your CSS file defines .system-cell and .systems-grid
+
 
 const Systems = () => {
   const dispatch = useDispatch();
@@ -11,6 +13,10 @@ const Systems = () => {
     dispatch(fetchSystems());
   }, [dispatch]);
 
+  const handleLogout = () => {
+    dispatch(logout());
+    // Optional: Add any redirection here if needed
+  };
   const calculatePosition = (id) => {
     const step = 60;
     const bottomLegStep = step * 1.98; // Increased step size for the bottom leg
@@ -53,7 +59,9 @@ const Systems = () => {
   }
 
   return (
+    
     <div className="systems-container">
+      <button onClick={handleLogout} style={{ position: 'absolute', right: '10px', top: '10px' }}>Logout</button>
       <div className="systems-grid">
         {systems.map(system => {
           const positionStyle = calculatePosition(system.id);
