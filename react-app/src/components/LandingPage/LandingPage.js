@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux'; // Ensure this is correctly imported from 'react-redux'
-import { login } from '/Users/alexflorea/Desktop/Kyber_dar/practice-for-week-19-python-project-skeleton/react-app/src/store/session.js'; // Adjust this import path to where your auth actions are defined
+import { login } from '../../store/session'; // Adjust this import path to where your auth actions are defined
 import './LandingPage.css'; // Ensure this path correctly points to your CSS file
 
 function LandingPage() {
