@@ -51,3 +51,34 @@ def create_flag(system_id):
     db.session.add(new_flag)
     db.session.commit()
     return jsonify(new_flag.to_dict()), 201
+  
+  # update system flag route
+@system_routes.route('/flags/<int:flag_id>', methods=['PUT'])
+@login_required
+def update_flag(flag_id):
+    flag = SystemFlag.query.get(flag_id)
+    if flag is None:
+        abort(404, description='Flag not found.')
+    if flag.player_id != current_user.id:
+        abort(403, description='Not allowed to edit this flag.')
+    
+    data = request.get_json()
+    # Again, validate your incoming data.
+    flag.type = data['type']
+    flag.description = data.get('description', flag.description)
+    flag.status = data.get('status', flag.status)
+    db.session.commit()
+    return jsonify(flag.to_dict()), 200
+  # delete system flag route
+@system_routes.route('/flags/<int:flag_id>', methods=['DELETE'])
+@login_required
+def delete_flag(flag_id):
+    flag = SystemFlag.query.get(flag_id)
+    if flag is None:
+        abort(404, description='Flag not found.')
+    if flag.player_id != current_user.id:
+        abort(403, description='Not allowed to delete this flag.')
+    
+    db.session.delete(flag)
+    db.session.commit()
+    return jsonify({'message': 'Flag deleted successfully'}), 200
