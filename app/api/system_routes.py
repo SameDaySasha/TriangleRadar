@@ -1,8 +1,9 @@
 from flask import Blueprint
 from flask_cors import CORS
-from app.models import System
+from app.models import System, SystemFlag,db
 from flask import jsonify
 from flask import request, abort
+from flask_login import current_user, login_required
 system_routes = Blueprint('systems', __name__)
 
 CORS(system_routes)
@@ -23,3 +24,30 @@ def get_system(system_id):
     if system is None:
         abort(404)  # Return a 404 Not Found error if the system doesn't exist
     return jsonify(system.to_dict())  # Return the system as a JSON response if found
+# get system flag route
+@system_routes.route('/<int:system_id>/flags', methods=['GET'])
+@login_required
+def get_flags(system_id):
+    system = System.query.get(system_id)
+    if system is None:
+        abort(404, description='System not found.')
+    flags = SystemFlag.query.filter_by(system_id=system_id).all()
+    return jsonify([flag.to_dict() for flag in flags]), 200
+
+  
+# create system flage route 
+@system_routes.route('/<int:system_id>/flags', methods=['POST'])
+@login_required
+def create_flag(system_id):
+    data = request.get_json()
+    # You should validate your incoming data properly here.
+    new_flag = SystemFlag(
+        system_id=system_id,
+        player_id=current_user.id,  # Assuming this is set by flask_login
+        type=data['type'],
+        description=data.get('description', ''),
+        status=data.get('status', 'active')
+    )
+    db.session.add(new_flag)
+    db.session.commit()
+    return jsonify(new_flag.to_dict()), 201
