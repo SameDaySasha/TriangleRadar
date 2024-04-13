@@ -1,0 +1,7 @@
+.system-detail-page {
+    font-family: Arial, sans-serif; /* Replace with the font you want to use */
+  }
+  .system-detail-page, .system-detail-page * {
+    font-family: Arial, sans-serif !important;
+  }
+  

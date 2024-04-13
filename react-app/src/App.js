@@ -4,9 +4,10 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import Systems from "./components/systems/Systems";
+import SystemDetailPage from "./components/systems/systemDetails"; // Import the SystemDetailPage component
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
-import LandingPage from "./components/LandingPage/LandingPage"; // Import the LandingPage component
+import LandingPage from "./components/LandingPage/LandingPage";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -29,7 +30,9 @@ function App() {
                 <Route exact path="/">
                   <Systems />
                 </Route>
-                {/* Redirect to the main page if trying to access login/signup directly */}
+                <Route path="/systems/:id">
+                  <SystemDetailPage />
+                </Route>
                 <Redirect to="/" />
               </Switch>
             </>
@@ -44,7 +47,6 @@ function App() {
               <Route path="/signup">
                 <SignupFormPage />
               </Route>
-              {/* Redirect to landing page if trying to access a restricted content */}
               <Redirect to="/" />
             </Switch>
           )}
