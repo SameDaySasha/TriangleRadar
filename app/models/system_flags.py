@@ -1,8 +1,6 @@
-# system_flags.py
 from .db import db, environment, SCHEMA
 from enum import Enum
 
-# If you are using an Enum for flag types, define it as follows
 class FlagType(Enum):
     OBS_SITE = "OBS Site"
     SLEEPER_HOLE = "Sleeper Hole"
@@ -20,29 +18,24 @@ class SystemFlag(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     system_id = db.Column(db.Integer, db.ForeignKey('systems.id'), nullable=False)
     player_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=False)
-    type = db.Column(db.Enum(FlagType), nullable=False)  # Use your enum here
+    type = db.Column(db.Enum(FlagType), nullable=False)
     description = db.Column(db.Text, nullable=True)
     status = db.Column(db.String(50), nullable=False, default="active")
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
 
-    # Relation to System
-    system_id = db.Column(db.Integer, nullable=False)
-    # Relationship to System, using implicit backref from System model
-    system = db.relationship('System', backref=db.backref('system_flags', lazy=True))
+    # Relationship to System
+    system = db.relationship('System', primaryjoin="SystemFlag.system_id==System.id", backref=db.backref('system_flags', lazy=True))
 
-# Relationship to Player, using implicit backref from Player model
-    player = db.relationship('Player', backref=db.backref('system_flags', lazy=True))
+    # Relationship to Player
+    player = db.relationship('Player', primaryjoin="SystemFlag.player_id==Player.id", backref=db.backref('system_flags', lazy=True))
 
-
-    # Relation to Player
-    player_id = db.Column(db.Integer, nullable=False)
     def to_dict(self):
         return {
             "id": self.id,
             "system_id": self.system_id,
             "player_id": self.player_id,
-            "type": self.type.name if self.type else None,  # Adjust this line if not using an Enum
+            "type": self.type.name if self.type else None,
             "description": self.description,
             "status": self.status,
             "created_at": self.created_at.isoformat(),
