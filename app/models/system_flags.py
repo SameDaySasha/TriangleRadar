@@ -27,11 +27,16 @@ class SystemFlag(db.Model):
     updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
 
     # Relation to System
+    system_id = db.Column(db.Integer, nullable=False)
+    # Relationship to System, using implicit backref from System model
     system = db.relationship('System', backref=db.backref('system_flags', lazy=True))
 
-    # Relation to Player
+# Relationship to Player, using implicit backref from Player model
     player = db.relationship('Player', backref=db.backref('system_flags', lazy=True))
 
+
+    # Relation to Player
+    player_id = db.Column(db.Integer, nullable=False)
     def to_dict(self):
         return {
             "id": self.id,
